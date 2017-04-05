@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    
+    <h:body>
+        <div id="HideLogin">   
+                Login
+            <h:form>
+                Neptunkód: <h:inputText label="A neved!" value="#{userBean.neptun}" /> <br/>
+                Jelszó: <h:inputSecret label="A neved!" value="#{userBean.password}" /> <br/>
+                <h:commandButton onclick="#{userBean.Login()};" value="Bejelentkezes"/>
+            </h:form>
+        </div>
+        
+        #{userBean.personDatas}
+        
+        <script type="text/javascript">
+        //<![CDATA[
+            function checkLogin(){
+                
+                
+                var check=#{userBean.isLoggedIn()};
+                if(check===true){
+                    document.getElementById("HideLogin").style.display="none";
+                    window.open("http://localhost:8080/UtazasTervezes/faces/user.xhtml"); // <- This is what makes it open in a new window.
+                    window.alert("Sikeres belépés");
+                }
+            }
+            checkLogin();
+        //]]>
+        </script>
+                
+    </h:body>
+</html>
+
